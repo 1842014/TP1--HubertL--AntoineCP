@@ -1,5 +1,5 @@
 package fighter;
 
-public class Fighter {
+abstract public class Fighter {
 
 }
