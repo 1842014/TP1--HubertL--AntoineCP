@@ -4,26 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import abstraction.Skills;
+import exception.IllegalAttributeTotal;
 
 public abstract class Fighter {
 
+	private static final int DEATH_POINT = 0;
+	private static final int MAX_TOTAL_ATTRIBUTES = 100;
+	
+	//Attributs
 	private String name;
 	private Attributes attributes;
-	private Skills firstSkill;
-	private Skills secondSkill;
 	private int healthPoints;
-	
 	private List<Skills> skills = new ArrayList<Skills>();
 	
-	
+	//Constructeur
 	public Fighter(String name, Attributes attributes, Skills firstSkill, Skills secondSkill, int healthPoints) {
 		this.name = name;
+		this.validateAttributes(attributes);
 		this.attributes = attributes;
-		this.firstSkill = firstSkill;
-		this.secondSkill = secondSkill;
 		this.healthPoints = healthPoints;
-	}
+		this.addSkills(firstSkill);
+		this.addSkills(secondSkill);
+
+	}	
+
 	
+	//Méthodes privées
+	private void validateAttributes(Attributes attributes) {
+		int attributesTotal = attributes.getStrenght() + attributes.getDexterity() + attributes.getIntelligence() + attributes.getFocus();
+		if(attributesTotal > MAX_TOTAL_ATTRIBUTES) {
+			throw new IllegalAttributeTotal();
+		}
+	}
+
+	private void addSkills(Skills skill) {
+		this.skills.add(skill);
+	}
+
+
+	//Méthodes Publiques
 	public String getName() {
 		return this.name;
 	}
@@ -53,7 +72,7 @@ public abstract class Fighter {
 	}
 	
 	public boolean isAlive() {
-		if(this.healthPoints > 0) {
+		if(this.healthPoints > DEATH_POINT) {
 			return true;
 		}
 		else {
@@ -61,7 +80,12 @@ public abstract class Fighter {
 		}
 	}
 	
-	public boolean hasTheSkill(Skills skill) {
-		return true;
+	public boolean hasTheSkill(Skills skillToCheck) {
+		for(Skills skill : this.skills) {
+			if(skill.equals(skillToCheck)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
