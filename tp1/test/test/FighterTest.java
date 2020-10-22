@@ -105,5 +105,31 @@ public class FighterTest {
 		final int EXPECTED_HEALTH = ANY_HEALTH - healthToRemove;
 		assertEquals(EXPECTED_HEALTH, aFighter.getHealthPoints());
 	}
+	
+	@Test
+	public void WHEN_aFighterIsCreated_THEN_ShouldHaveSkill() {
+		assertTrue(aFighter.hasTheSkill(ANY_SKILL));
+	}
+	
+	@Test
+	public void WHEN_aFighterIsCreatedAndDoesntHaveTheSkill_THEN_ShouldntHaveSkill() {
+		Skills skill = new SkillsMock();
+		
+		assertFalse(aFighter.hasTheSkill(skill));
+	}
+	
+	@Test
+	public void WHEN_aFighterIsCreatedAndHas2DifferentSkills_THEN_ShouldHaveSkill() {
+		Skills skill1 = new SkillsMock();
+		Skills skill2 = new SkillsMock();
+		Skills skill3 = new SkillsMock();
+		Fighter newFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, skill1, skill2, ANY_HEALTH);
+		
+		assertTrue(newFighter.hasTheSkill(skill1));
+		assertTrue(newFighter.hasTheSkill(skill2));
+		assertFalse(newFighter.hasTheSkill(skill3));
+	}
+	
+	
 
 }
