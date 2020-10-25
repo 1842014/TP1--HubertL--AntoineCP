@@ -23,16 +23,17 @@ public class FighterTest {
 	private static final int ANY_INTELLIGENCE = 20;
 	private static final int ANY_FOCUS = 20;
 
-	private static final int ANY_HEALTH = 200;
 	private static final Attributes ANY_ATTRIBUTES = new Attributes(ANY_STRENGHT,ANY_DEXTERITY,ANY_INTELLIGENCE,ANY_FOCUS);
 	private static final Skills ANY_SKILL = new SkillsMock();
+	private static final int FIGHTER_HEALTH = 200 - (ANY_ATTRIBUTES.getDexterity() + ANY_ATTRIBUTES.getFocus() + ANY_ATTRIBUTES.getIntelligence() + ANY_ATTRIBUTES.getStrenght());
+
 	
 	
 	private Fighter aFighter;
 	
 	@Before
 	public void setUpAFighter() {
-		this.aFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL, ANY_HEALTH);
+		this.aFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL);
 	}
 	
 	@Test
@@ -62,7 +63,7 @@ public class FighterTest {
 	
 	@Test
 	public void WHEN_aFighterIsCreated_THEN_HealthPointsShouldBeInitialized() {
-		assertEquals(ANY_HEALTH, aFighter.getHealthPoints());
+		assertEquals(FIGHTER_HEALTH, aFighter.getHealthPoints());
 	}
 	
 	@Test (expected = IllegalAttributeTotal.class)
@@ -71,7 +72,7 @@ public class FighterTest {
 		
 		Attributes illegalAttributes = new Attributes(Strenght, ANY_DEXTERITY, ANY_INTELLIGENCE, ANY_FOCUS);
 		
-		new FighterMock(ANY_NAME, illegalAttributes, ANY_SKILL, ANY_SKILL, ANY_HEALTH);
+		new FighterMock(ANY_NAME, illegalAttributes, ANY_SKILL, ANY_SKILL);
 		
 	}
 	
@@ -82,16 +83,17 @@ public class FighterTest {
 	
 	@Test
 	public void WHEN_aFighterDeadIsCreated_THEN_ShouldBeDead() {
-		int health = 0;
-		Fighter fighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL, health);
+		Fighter fighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL);
+		fighter.decreaseHealthPoints(FIGHTER_HEALTH);
 		
 		assertFalse(fighter.isAlive());
 	}
 	
 	@Test
 	public void WHEN_aFighterDeadIsCreated_With_NegativeHealth_THEN_ShouldBeDead() {
-		int health = -100;
-		Fighter fighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL, health);
+		int health = 200;
+		Fighter fighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL);
+		fighter.decreaseHealthPoints(health);
 		
 		assertFalse(fighter.isAlive());
 	}
@@ -102,7 +104,7 @@ public class FighterTest {
 		
 		aFighter.decreaseHealthPoints(healthToRemove);
 		
-		final int EXPECTED_HEALTH = ANY_HEALTH - healthToRemove;
+		final int EXPECTED_HEALTH = FIGHTER_HEALTH - healthToRemove;
 		assertEquals(EXPECTED_HEALTH, aFighter.getHealthPoints());
 	}
 	
@@ -123,7 +125,7 @@ public class FighterTest {
 		Skills skill1 = new SkillsMock();
 		Skills skill2 = new SkillsMock();
 		Skills skill3 = new SkillsMock();
-		Fighter newFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, skill1, skill2, ANY_HEALTH);
+		Fighter newFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, skill1, skill2);
 		
 		assertTrue(newFighter.hasTheSkill(skill1));
 		assertTrue(newFighter.hasTheSkill(skill2));
