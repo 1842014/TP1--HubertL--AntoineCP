@@ -79,7 +79,7 @@ public abstract class Fighter {
 			return false;
 		}
 	}
-	
+
 	public boolean hasTheSkill(Skills skillToCheck) {
 		for(Skills skill : this.skills) {
 			if(skill.equals(skillToCheck)) {
