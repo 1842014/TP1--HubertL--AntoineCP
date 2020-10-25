@@ -6,8 +6,8 @@ import duel.Fighter;
 
 public class FighterMock extends Fighter {
 
-	public FighterMock(String name, Attributes attributes, Skills firstSkill, Skills secondSkill, int healthPoints) {
-		super(name, attributes, firstSkill, secondSkill, healthPoints);
+	public FighterMock(String name, Attributes attributes, Skills firstSkill, Skills secondSkill) {
+		super(name, attributes, firstSkill, secondSkill);
 	}
 
 }
