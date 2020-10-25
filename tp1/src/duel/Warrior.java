@@ -1,5 +1,5 @@
 package duel;
 
-public class Warrior {
-
+public class Warrior extends Fighter{
+	
 }

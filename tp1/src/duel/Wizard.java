@@ -1,5 +1,5 @@
 package duel;
 
-public class Wizard {
+public class Wizard extends Fighter{
 
 }
