@@ -15,20 +15,19 @@ public class Wizard extends Fighter{
 
 	private void validateAttributes() {
 		if(super.getIntelligence() < max(super.getStrenght(), super.getDexterity()) + AMOUNT_TO_ADD) {
-			if(super.getStrenght() >= super.getDexterity()) {
-				throw new IllegalStrenghtAttributes();
-			}
-			else {
-				throw new IllegalDexterityAttributes();
-			}
+			checkException();
 		}
 		else if ( super.getFocus() < max(super.getStrenght(), super.getDexterity()) + AMOUNT_TO_ADD) {
-			if(super.getStrenght() >= super.getDexterity()) {
-				throw new IllegalStrenghtAttributes();
-			}
-			else {
-				throw new IllegalDexterityAttributes();
-			}
+			checkException();
+		}
+	}
+
+	private void checkException() {
+		if(super.getStrenght() >= super.getDexterity()) {
+			throw new IllegalStrenghtAttributes();
+		}
+		else {
+			throw new IllegalDexterityAttributes();
 		}
 	}
 

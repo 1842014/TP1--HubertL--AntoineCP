@@ -16,7 +16,7 @@ public class Warrior extends Fighter{
 	}
 	
 	private void validateAttributes() {
-		if(super.getStrenght() < super.getDexterity()) { 
+		if(super.getStrenght() < LEGAL_DEXTERITY) { 
 			throw new IllegalDexterityAttributes();
 		}
 		else if( LEGAL_DEXTERITY < LEGAL_INTELLIGENCE) {
