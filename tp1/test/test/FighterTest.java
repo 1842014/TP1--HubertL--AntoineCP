@@ -66,6 +66,14 @@ public class FighterTest {
 		assertEquals(FIGHTER_HEALTH, aFighter.getHealthPoints());
 	}
 	
+	@Test
+	public void WHEN_aFighterIsCreated_THEN_SkillsShouldBeInitialized() {		
+		final int EXPECTED_SKILL_AMOUNT = 2;
+		
+		assertEquals(EXPECTED_SKILL_AMOUNT, aFighter.getSkills().size());
+		assertTrue(aFighter.hasTheSkill(ANY_SKILL));
+	}
+	
 	@Test (expected = IllegalAttributeTotal.class)
 	public void WHEN_aFighterIsCreated_WITH_IllegalAttributeTotal_THEN_ShouldThrowException() {
 		int Strenght = 50;
@@ -130,6 +138,25 @@ public class FighterTest {
 		assertTrue(newFighter.hasTheSkill(skill1));
 		assertTrue(newFighter.hasTheSkill(skill2));
 		assertFalse(newFighter.hasTheSkill(skill3));
+	}
+	
+	@Test
+	public void WHEN_aFighterIsCreated_THEN_ShouldBeAbleToAddSkill() {
+		this.aFighter.addSkill(ANY_SKILL);
+		this.aFighter.addSkill(ANY_SKILL);
+		this.aFighter.addSkill(ANY_SKILL);
+
+		
+		final int EXPECTED_AMOUNT_SKILL = 5;
+		assertEquals(EXPECTED_AMOUNT_SKILL, aFighter.getSkills().size());
+	}
+	
+	@Test
+	public void WHEN_aFighterIsCreated_THEN_ShouldBeAbleToRemoveSkill() {
+		this.aFighter.removeSkill(ANY_SKILL);
+		
+		final int EXPECTED_AMOUNT_SKILL = 1;
+		assertEquals(EXPECTED_AMOUNT_SKILL, aFighter.getSkills().size());
 	}
 	
 	

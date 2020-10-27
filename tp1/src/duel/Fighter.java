@@ -27,8 +27,8 @@ public abstract class Fighter {
 		this.validateAttributes(attributes);
 		this.attributes = attributes;
 		this.healthPoints = this.setHealthPoints();
-		this.addSkills(firstSkill);
-		this.addSkills(secondSkill);
+		this.addSkill(firstSkill);
+		this.addSkill(secondSkill);
 
 	}	
 
@@ -39,10 +39,6 @@ public abstract class Fighter {
 		if(attributesTotal > MAX_TOTAL_ATTRIBUTES) {
 			throw new IllegalAttributeTotal();
 		}
-	}
-
-	private void addSkills(Skills skill) {
-		this.skills.add(skill);
 	}
 	
 	private int getTotalAttributes() {
@@ -102,5 +98,21 @@ public abstract class Fighter {
 			}
 		}
 		return false;
+	}
+	
+	public void addSkill(Skills skill) {
+		this.skills.add(skill);
+	}
+	
+	public void removeSkill(Skills skill) {
+		this.skills.remove(skill);
+	}
+	
+	/*public int getPower(Skills skill) {
+		return this.getStrenght() * skill.getValue();
+	}*/
+	
+	public List<Skills> getSkills(){
+		return this.skills;
 	}
 }
