@@ -1,18 +1,59 @@
 package factories;
 
-import abstraction.Skills;
+import abstraction.Attackable;
+import abstraction.Healable;
+import abstraction.Parryable;
+import exception.NotImplementedTypeException;
+import skills.DefenseSpell;
+import skills.HealSpell;
+import skills.OffenseSpell;
+import skills.Remedy;
+import skills.Sheild;
+import skills.Sword;
 
 public class SkillsFactory {
 
-	public enum SkillType{
-		ATTACK, PARY, HEAL;
+	public enum AttackSkill{
+		SWORD, OFFENSE_SPELL;
+	}
+	
+	public enum DefenseSkill{
+		SHEILD, DEFENSE_SPELL;
+	}
+
+	public enum HealSkill{
+		REMEDY, HEAL_SPELL;
+	}
+	
+	public Attackable createAttackSkill(AttackSkill skill, int value) {
+		
+		switch(skill) {
+		case SWORD : return new Sword(value);
+		
+		case OFFENSE_SPELL : return new OffenseSpell(value);
+		}
+		throw new NotImplementedTypeException();
 	}
 
 	
-	public Skills createdSkill(SkillType type) {
+	public Parryable createDefenseSkill(DefenseSkill skill, int value) {
 		
-		switch(type) {
-		case ATTACK : return new
+		switch(skill) {
+		case SHEILD : return new Sheild(value);
+		
+		case DEFENSE_SPELL : return new DefenseSpell(value);
 		}
+		throw new NotImplementedTypeException();
+	}
+
+	
+	public Healable createHealsSkill(HealSkill skill, int value) {
+		
+		switch(skill) {
+		case REMEDY : return new Remedy(value);
+		
+		case HEAL_SPELL : return new HealSpell(value);
+		}
+		throw new NotImplementedTypeException();
 	}
 }
