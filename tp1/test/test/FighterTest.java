@@ -159,6 +159,16 @@ public class FighterTest {
 		assertEquals(EXPECTED_AMOUNT_SKILL, aFighter.getSkills().size());
 	}
 	
+	@Test
+	public void WHEN_aFirghterIsCreatedAndGetPowerIsCalled_ShouldReturnPower() {
+		Skills sword = new SkillsMock();
+		
+		int swordPower = aFighter.getPower(sword);
+		
+		final int EXPECTED_POWER = SkillsMock.ANY_VALUE;
+		assertEquals(EXPECTED_POWER, swordPower);
+	}
+	
 	
 
 }

@@ -1,4 +1,4 @@
-package frabrics;
+package factories;
 
 import abstraction.Skills;
 import duel.Athlete;
@@ -8,7 +8,7 @@ import duel.Warrior;
 import duel.Wizard;
 import exception.NotImplementedTypeException;
 
-public class FighterFabric {
+public class FighterFactory {
 	public enum FighterType{
 		ATHLETE,WARRIOR,WIZARD,UNKNOWN;
 	}

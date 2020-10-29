@@ -1,5 +1,7 @@
 package abstraction;
 
-public interface Skills {
+import duel.Fighter;
 
+public interface Skills {
+	public int getValue(Fighter fighter);
 }

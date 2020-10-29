@@ -1,4 +1,4 @@
-package frabrics;
+package factories;
 
 import abstraction.Skills;
 

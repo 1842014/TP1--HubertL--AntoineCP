@@ -108,9 +108,9 @@ public abstract class Fighter {
 		this.skills.remove(skill);
 	}
 	
-	/*public int getPower(Skills skill) {
-		return this.getStrenght() * skill.getValue();
-	}*/
+	public int getPower(Skills skill) {
+		return skill.getValue(this);
+	}
 	
 	public List<Skills> getSkills(){
 		return this.skills;

@@ -12,8 +12,8 @@ import duel.Fighter;
 import duel.Warrior;
 import duel.Wizard;
 import exception.NotImplementedTypeException;
-import frabrics.FighterFabric;
-import frabrics.FighterFabric.FighterType;
+import factories.FighterFactory;
+import factories.FighterFactory.FighterType;
 import mock.SkillsMock;
 
 public class FighterFactoryTest {
@@ -22,11 +22,11 @@ public class FighterFactoryTest {
 
 
 	private static final Skills ANY_SKILL = new SkillsMock();
-	private FighterFabric fabric;
+	private FighterFactory fabric;
 	
 	@Before
 	public void setUpFactory() {
-		fabric = new FighterFabric();
+		fabric = new FighterFactory();
 	}
 	@Test
 	public void WHEN_TypeIsAthlete_THEN_AnFighterOfAthleteTypeIsCreated() {
