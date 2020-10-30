@@ -1,9 +1,10 @@
 package mock;
 
+import abstraction.Attackable;
 import abstraction.Skills;
 import duel.Fighter;
 
-public class SkillsMock implements Skills {
+public class SkillsMock implements Skills, Attackable {
 
 	
 	

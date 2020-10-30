@@ -8,9 +8,11 @@ import exception.IllegalAttributeTotal;
 
 public abstract class Fighter {
 
+	private static final int BONUS_ATTRIBUTES = 1;
 	private static final int DEATH_POINT = 0;
 	private static final int MAX_TOTAL_ATTRIBUTES = 100;
 	private static final int BASE_HEALTH_POINTS = 200;
+	private static final int PENALITY_ATTRIBUTES = 1;
 	
 	//Attributs
 	private String name;
@@ -114,5 +116,20 @@ public abstract class Fighter {
 	
 	public List<Skills> getSkills(){
 		return this.skills;
+	}
+
+	public void giveBonusAttributes() {
+		this.attributes.setDexterity(getDexterity() + BONUS_ATTRIBUTES);
+		this.attributes.setFocus(getFocus() + BONUS_ATTRIBUTES);
+		this.attributes.setIntelligence(getIntelligence() + BONUS_ATTRIBUTES);
+		this.attributes.setStrenght(getStrenght() + BONUS_ATTRIBUTES);
+	}
+
+
+	public void givePenalityAttributes() {
+		this.attributes.setDexterity(getDexterity() - PENALITY_ATTRIBUTES);
+		this.attributes.setFocus(getFocus() - PENALITY_ATTRIBUTES);
+		this.attributes.setIntelligence(getIntelligence() - PENALITY_ATTRIBUTES);
+		this.attributes.setStrenght(getStrenght() - PENALITY_ATTRIBUTES);
 	}
 }
