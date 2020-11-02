@@ -29,5 +29,8 @@ public class HealSpell implements Healable {
 	public int getValue(Fighter fighter) {
 		return fighter.getIntelligence() * this.energy / MAXIMUM_VALUE;
 	}
-
+	@Override
+	public String toString() {
+		return "HealSpell Power: " + getEnergy();
+	}
 }

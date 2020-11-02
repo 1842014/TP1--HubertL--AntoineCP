@@ -29,5 +29,8 @@ public class Sword implements Attackable{
 	public int getValue(Fighter fighter) {
 		return fighter.getStrenght() * this.impact / MAXIMUM_VALUE;
 	}
-
+	@Override
+	public String toString() {
+		return "Sword Power: "+ getImpact();
+	}
 }

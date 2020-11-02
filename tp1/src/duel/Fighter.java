@@ -115,4 +115,9 @@ public abstract class Fighter {
 	public List<Skills> getSkills(){
 		return this.skills;
 	}
+	@Override
+	public String toString() {
+		return getName() + " Attributs: " + getStrenght() +" "+ getDexterity() +" "+ getIntelligence() +" "+ getFocus() + " Skills: " + getSkills().toString() + " HP: "+getHealthPoints();
+		
+	}
 }

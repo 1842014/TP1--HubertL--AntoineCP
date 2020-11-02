@@ -31,5 +31,8 @@ public class OffenseSpell implements Attackable{
 	public int getValue(Fighter fighter) {
 		return (fighter.getIntelligence() * this.efficiency / MAXIMUM_VALUE) * MULTIPLIER;
 	}
-
+	@Override
+	public String toString() {
+		return "OffenseSpell Power: "+ getEfficiency();
+	}
 }

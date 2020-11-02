@@ -29,4 +29,8 @@ private int protection;
 	public int getValue(Fighter fighter) {
 		return fighter.getStrenght() * this.protection / MAXIMUM_VALUE;
 	}
+	@Override
+	public String toString() {
+		return "Shield Power: "+ getProtection();
+	}
 }
