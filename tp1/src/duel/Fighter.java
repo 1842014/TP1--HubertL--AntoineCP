@@ -49,10 +49,6 @@ public abstract class Fighter {
 	private int getTotalAttributes(Attributes attributes) {
 		return attributes.getStrenght() + attributes.getDexterity() + attributes.getIntelligence() + attributes.getFocus();
 	}
-	
-	private int setHealthPoints() {
-		return BASE_HEALTH_POINTS - this.getTotalAttributes();
-	}
 
 
 	//Méthodes Publiques
@@ -78,6 +74,10 @@ public abstract class Fighter {
 	
 	public int getHealthPoints() {
 		return this.healthPoints;
+	}
+	
+	public int setHealthPoints() {
+		return BASE_HEALTH_POINTS - this.getTotalAttributes();
 	}
 	
 	public void decreaseHealthPoints(int healthToRemove) {
@@ -131,5 +131,13 @@ public abstract class Fighter {
 		this.attributes.setFocus(getFocus() - PENALITY_ATTRIBUTES);
 		this.attributes.setIntelligence(getIntelligence() - PENALITY_ATTRIBUTES);
 		this.attributes.setStrenght(getStrenght() - PENALITY_ATTRIBUTES);
+	}
+
+
+	public void setAttributes(int newStrenght, int newDexterity, int newIntelligence, int newFocus) {
+		this.attributes.setStrenght(newStrenght);
+		this.attributes.setDexterity(newDexterity);
+		this.attributes.setIntelligence(newIntelligence);
+		this.attributes.setFocus(newFocus);
 	}
 }
