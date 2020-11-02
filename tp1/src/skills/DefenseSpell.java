@@ -31,5 +31,8 @@ public class DefenseSpell implements Parryable {
 	public int getValue(Fighter fighter) {
 		return (fighter.getIntelligence() * this.intensity / MAXIMUM_VALUE) * MULTIPLIER;
 	}
-
+	@Override
+	public String toString() {
+		return "DefenseSpell Power: "+ getIntensity();
+	}
 }

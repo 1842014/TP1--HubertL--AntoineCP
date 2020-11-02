@@ -29,5 +29,8 @@ public class Remedy implements Healable {
 	public int getValue(Fighter fighter) {
 		return fighter.getDexterity() * this.strenght / MAXIMUM_VALUE;
 	}
-
+	@Override
+	public String toString() {
+		return "Remedy Power: "+ getStrenght();
+	}
 }
