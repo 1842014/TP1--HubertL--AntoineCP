@@ -117,13 +117,13 @@ public abstract class Fighter {
 	public List<Skills> getSkills(){
 		return this.skills;
 	}
-<<<<<<< HEAD
+	
 	@Override
 	public String toString() {
 		return getName() + " Attributs: " + getStrenght() +" "+ getDexterity() +" "+ getIntelligence() +" "+ getFocus() + " Skills: " + getSkills().toString() + " HP: "+getHealthPoints();
-		
-=======
-
+	}
+	
+	
 	public void giveBonusAttributes() {
 		this.attributes.setDexterity(getDexterity() + BONUS_ATTRIBUTES);
 		this.attributes.setFocus(getFocus() + BONUS_ATTRIBUTES);
@@ -145,6 +145,5 @@ public abstract class Fighter {
 		this.attributes.setDexterity(newDexterity);
 		this.attributes.setIntelligence(newIntelligence);
 		this.attributes.setFocus(newFocus);
->>>>>>> Duel
 	}
 }
