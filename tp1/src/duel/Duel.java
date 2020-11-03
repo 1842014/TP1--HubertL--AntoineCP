@@ -99,7 +99,6 @@ public class Duel {
 	}
 	
 	public void giveWinnerBonus(Skills chosenSkill) {
-		
 		this.winner.addSkill(chosenSkill);
 		this.winner.giveBonusAttributes();
 		

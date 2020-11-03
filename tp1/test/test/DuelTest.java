@@ -150,17 +150,30 @@ public class DuelTest {
 	}
 	
 	@Test
-	public void WHEN_duelIsCreated_WITH_provokedFighterRetaliating_THEN_LoserHealthIsDecreased() {
+	public void WHEN_duelIsCreated_WITH_provokedFighterRetaliatingWithLowerValue_THEN_LoserHealthIsDecreased() {
 		Parryable parrySkill = new ParrySkillMock(20);
+		final int EXPECTED_HEALTH_TO_REMOVE = ANY_ATTACK_SKILL.getValue(null) - parrySkill.getValue(null);
+		final int EXPECTED_LOSER_HEALTH = this.provokedFighter.getHealthPoints() - EXPECTED_HEALTH_TO_REMOVE;
+		
+		
 		this.duel.retaliate(parrySkill);
 		this.duel.giveWinnerBonus(ANY_HEAL_SKILL);
-		
-		final int EXPECTED_HEALTH_TO_REMOVE = ANY_ATTACK_SKILL.getValue(null) - parrySkill.getValue(null);
-		final int EXPECTED_LOSER_HEALTH = this.duel.getLoser().getHealthPoints() - EXPECTED_HEALTH_TO_REMOVE;
-		
-		assertEquals(EXPECTED_LOSER_HEALTH, this.duel.getLoser().decreaseHealthPoints(EXPECTED_HEALTH_TO_REMOVE));
+				
+		assertEquals(EXPECTED_LOSER_HEALTH, this.duel.getLoser().getHealthPoints());
 	}
 	
+	@Test
+	public void WHEN_duelIsCreated_WITH_provokedFighterRetaliatingWithStrongerValue_THEN_loserHealthIsDecreased() {
+		Parryable parrySkill = new ParrySkillMock(100);
+		final int EXPECTED_HEALTH_TO_REMOVE = parrySkill.getValue(null) - ANY_ATTACK_SKILL.getValue(null);
+		final int EXPECTED_LOSER_HEALTH = this.initFighter.getHealthPoints() - EXPECTED_HEALTH_TO_REMOVE;
+		
+		
+		this.duel.retaliate(parrySkill);
+		this.duel.giveWinnerBonus(ANY_HEAL_SKILL);
+				
+		assertEquals(EXPECTED_LOSER_HEALTH, this.duel.getLoser().getHealthPoints());
+	}
 	
 	
 	
