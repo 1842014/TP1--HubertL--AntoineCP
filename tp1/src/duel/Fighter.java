@@ -10,35 +10,46 @@ public abstract class Fighter {
 
 	private static final int DEATH_POINT = 0;
 	private static final int MAX_TOTAL_ATTRIBUTES = 100;
+	private static final int BASE_HEALTH_POINTS = 200;
 	
 	//Attributs
 	private String name;
 	private Attributes attributes;
 	private int healthPoints;
 	private List<Skills> skills = new ArrayList<Skills>();
+
+	
+
 	
 	//Constructeur
-	public Fighter(String name, Attributes attributes, Skills firstSkill, Skills secondSkill, int healthPoints) {
+	public Fighter(String name, Attributes attributes, Skills firstSkill, Skills secondSkill) {
 		this.name = name;
 		this.validateAttributes(attributes);
 		this.attributes = attributes;
-		this.healthPoints = healthPoints;
-		this.addSkills(firstSkill);
-		this.addSkills(secondSkill);
+		this.healthPoints = this.setHealthPoints();
+		this.addSkill(firstSkill);
+		this.addSkill(secondSkill);
 
 	}	
 
-	
+
 	//Méthodes privées
 	private void validateAttributes(Attributes attributes) {
-		int attributesTotal = attributes.getStrenght() + attributes.getDexterity() + attributes.getIntelligence() + attributes.getFocus();
+		int attributesTotal = getTotalAttributes(attributes);
 		if(attributesTotal > MAX_TOTAL_ATTRIBUTES) {
 			throw new IllegalAttributeTotal();
 		}
 	}
-
-	private void addSkills(Skills skill) {
-		this.skills.add(skill);
+	
+	private int getTotalAttributes() {
+		return attributes.getStrenght() + attributes.getDexterity() + attributes.getIntelligence() + attributes.getFocus();
+	}
+	private int getTotalAttributes(Attributes attributes) {
+		return attributes.getStrenght() + attributes.getDexterity() + attributes.getIntelligence() + attributes.getFocus();
+	}
+	
+	private int setHealthPoints() {
+		return BASE_HEALTH_POINTS - this.getTotalAttributes();
 	}
 
 
@@ -79,7 +90,7 @@ public abstract class Fighter {
 			return false;
 		}
 	}
-	
+
 	public boolean hasTheSkill(Skills skillToCheck) {
 		for(Skills skill : this.skills) {
 			if(skill.equals(skillToCheck)) {
@@ -87,5 +98,26 @@ public abstract class Fighter {
 			}
 		}
 		return false;
+	}
+	
+	public void addSkill(Skills skill) {
+		this.skills.add(skill);
+	}
+	
+	public void removeSkill(Skills skill) {
+		this.skills.remove(skill);
+	}
+	
+	public int getPower(Skills skill) {
+		return skill.getValue(this);
+	}
+	
+	public List<Skills> getSkills(){
+		return this.skills;
+	}
+	@Override
+	public String toString() {
+		return getName() + " Attributs: " + getStrenght() +" "+ getDexterity() +" "+ getIntelligence() +" "+ getFocus() + " Skills: " + getSkills().toString() + " HP: "+getHealthPoints();
+		
 	}
 }
