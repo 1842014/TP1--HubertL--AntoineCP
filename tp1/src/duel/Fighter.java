@@ -79,7 +79,10 @@ public abstract class Fighter {
 	public int setHealthPoints() {
 		return BASE_HEALTH_POINTS - this.getTotalAttributes();
 	}
-	
+	public void heal(int hpToAdd) {
+		this.healthPoints += hpToAdd;
+		
+	}
 	public void decreaseHealthPoints(int healthToRemove) {
 		this.healthPoints -= healthToRemove;
 	}
