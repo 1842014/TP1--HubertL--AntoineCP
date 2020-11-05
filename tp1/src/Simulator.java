@@ -2,13 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import abstraction.Attackable;
+import abstraction.Healable;
 import abstraction.Skills;
 import duel.Athlete;
 import duel.Attributes;
 import duel.Duel;
 import duel.Fighter;
+import duel.Infermery;
 import duel.Warrior;
 import duel.Wizard;
+import exception.NoHealableException;
 import skills.DefenseSpell;
 import skills.HealSpell;
 import skills.OffenseSpell;
@@ -43,18 +46,39 @@ public class Simulator {
 		this.printData("Combatants avant le combats");
 		this.fight(listOfFighter.get(0), listOfFighter.get(1));
 		this.printData("Combatants après le combats");
-		this.printData("Combatants avant le combats");
 		this.surrender(listOfFighter.get(2), listOfFighter.get(0));
 		this.printData("Combatants après le combats");
+		this.healStation(listOfFighter.get(1), (Healable) listOfFighter.get(1).getSkills().get(1));
+		this.printData("Combatants");
+		this.healStation(this.listOfFighter.get(0), (Healable) remedy);
 
+	}
+
+	private void healStation(Fighter fighterToHeal, Healable healSkill) {
+		System.out.println();
+		System.out.println("Le Combatant " + fighterToHeal.getName() + " va à l'infirmerie.");
+		try {
+			Infermery infermery = new Infermery(fighterToHeal, healSkill);
+			
+			infermery.healing();
+		}
+		catch(NoHealableException ex) {
+			System.out.println();
+			System.out.println("Oh non! Le combatants n'a pas la capacité requise.");
+		}
+		
+		System.out.println();
+		System.out.println("Le Combatant a maintenant " + fighterToHeal.getHealthPoints() + " points de vie");
 	}
 
 	private void surrender(Fighter initiator, Fighter provoked) {
 		System.out.println();
-		System.out.println("Le combats commence!!!");
+		System.out.println("Le combats entre " + initiator.getName() + " et " + provoked.getName() + " commence!!!");
 		Duel duel = new Duel(initiator, (Attackable) initiator.getSkills().get(1), provoked);
 		
 		duel.surrender();
+		System.out.println();
+		System.out.println(provoked.getName() + " capitule!");
 		duel.giveWinnerBonus(healSpell);
 		
 		System.out.println();
@@ -63,10 +87,12 @@ public class Simulator {
 
 	private void fight(Fighter initiator, Fighter provoked) {
 		System.out.println();
-		System.out.println("Le combats commence!!!");
+		System.out.println("Le combats entre " + initiator.getName() + " et " + provoked.getName() + " commence!!!");
 		Duel duel = new Duel(initiator, (Attackable) initiator.getSkills().get(0), provoked);
 		
 		duel.retaliate((Attackable) provoked.getSkills().get(0));
+		System.out.println();
+		System.out.println(provoked.getName() + " riposte!");
 		duel.giveWinnerBonus(healSpell);
 		
 		System.out.println();

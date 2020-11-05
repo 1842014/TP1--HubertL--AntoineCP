@@ -31,6 +31,7 @@ public class InfermeryTest {
 	private static final Healable ANY_HEAL_SKILL = new HealSkillMock(ANY_VALUE);
 	private Fighter anyFighter;
 	private Infermery infermery;
+	
 	@Before
 	public void setUpInfermery() {
 		this.anyFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_ATTACK_SKILL, ANY_HEAL_SKILL);
@@ -40,10 +41,10 @@ public class InfermeryTest {
 	@Test (expected = NoHealableException.class)
 	public void WHEN_HeallingSkillIsNotHere_THEN_ExceptionIsReturn() {
 		Fighter fighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_ATTACK_SKILL, ANY_PARRY_SKILL);
-		Infermery infermery = new Infermery(fighter, ANY_HEAL_SKILL);
+		new Infermery(fighter, ANY_HEAL_SKILL);
 	}
 	@Test
-	public void WHEN_InfermeryIsUsed_THEN_HPIsHeal() {
+	public void WHEN_InfermeryIsUsed_THEN_HPIsHealed() {
 		int expectedHP = this.anyFighter.getHealthPoints() + ANY_VALUE;
 		this.infermery.healing();
 		
