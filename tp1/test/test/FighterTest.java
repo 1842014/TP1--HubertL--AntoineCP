@@ -34,6 +34,7 @@ public class FighterTest {
 	@Before
 	public void setUpAFighter() {
 		this.aFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL);
+		aFighter.setAttributes(ANY_STRENGHT, ANY_DEXTERITY, ANY_INTELLIGENCE, ANY_FOCUS);
 	}
 	
 	@Test
@@ -160,7 +161,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void WHEN_aFirghterIsCreatedAndGetPowerIsCalled_ShouldReturnPower() {
+	public void WHEN_aFighterIsCreatedAndGetPowerIsCalled_ShouldReturnPower() {
 		Skills sword = new SkillsMock();
 		
 		int swordPower = aFighter.getPower(sword);
@@ -170,5 +171,74 @@ public class FighterTest {
 	}
 	
 	
+	@Test
+	public void WHEN_aFighterIsCreatedAndGiveBonusIsCalled_ShouldApplyBonuses() {
+		
+		int strenghtAfterBonus = ANY_STRENGHT + 1;
+		int dexterityAfterBonus = ANY_DEXTERITY + 1;
+		int intelligenceAfterBonus = ANY_INTELLIGENCE + 1;
+		int focusAfterBonus = ANY_FOCUS + 1;
+		
+		aFighter.giveBonusAttributes();
+		
+		assertEquals(strenghtAfterBonus, aFighter.getStrenght());
+		assertEquals(dexterityAfterBonus, aFighter.getDexterity());
+		assertEquals(intelligenceAfterBonus, aFighter.getIntelligence());
+		assertEquals(focusAfterBonus, aFighter.getFocus());
+	}
+	
+	@Test
+	public void WHEN_aFighterIsCreatedAndGiveBonusIsCalledMultipleTimes_ShouldApplyBonuses() {
+		
+		int strenghtAfterBonus = ANY_STRENGHT + 4;
+		int dexterityAfterBonus = ANY_DEXTERITY + 4;
+		int intelligenceAfterBonus = ANY_INTELLIGENCE + 4;
+		int focusAfterBonus = ANY_FOCUS + 4;
+		
+		aFighter.giveBonusAttributes();
+		aFighter.giveBonusAttributes();
+		aFighter.giveBonusAttributes();
+		aFighter.giveBonusAttributes();
+		
+		assertEquals(strenghtAfterBonus, aFighter.getStrenght());
+		assertEquals(dexterityAfterBonus, aFighter.getDexterity());
+		assertEquals(intelligenceAfterBonus, aFighter.getIntelligence());
+		assertEquals(focusAfterBonus, aFighter.getFocus());
+	}
+	@Test
+	public void WHEN_aFighterIsCreatedAndGivePenalityIsCalled_ShouldApplyPenalities() {
+		
+		int strenghtAfterPenality = ANY_STRENGHT - 1;
+		int dexterityAfterPenality = ANY_DEXTERITY - 1;
+		int intelligenceAfterPenality = ANY_INTELLIGENCE - 1;
+		int focusAfterPenality = ANY_FOCUS - 1;
+		
+		aFighter.givePenalityAttributes();
+		
+		assertEquals(strenghtAfterPenality, aFighter.getStrenght());
+		assertEquals(dexterityAfterPenality, aFighter.getDexterity());
+		assertEquals(intelligenceAfterPenality, aFighter.getIntelligence());
+		assertEquals(focusAfterPenality, aFighter.getFocus());
+	}
+
+	@Test
+	public void WHEN_aFighterIsCreatedAndGivePenalityIsCalledMultipleTimes_ShouldApplyPenalities() {
+		
+		int strenghtAfterPenality = ANY_STRENGHT - 4;
+		int dexterityAfterPenality = ANY_DEXTERITY - 4;
+		int intelligenceAfterPenality = ANY_INTELLIGENCE - 4;
+		int focusAfterPenality = ANY_FOCUS - 4;
+		
+		aFighter.givePenalityAttributes();
+		aFighter.givePenalityAttributes();
+		aFighter.givePenalityAttributes();
+		aFighter.givePenalityAttributes();
+
+		
+		assertEquals(strenghtAfterPenality, aFighter.getStrenght());
+		assertEquals(dexterityAfterPenality, aFighter.getDexterity());
+		assertEquals(intelligenceAfterPenality, aFighter.getIntelligence());
+		assertEquals(focusAfterPenality, aFighter.getFocus());
+	}
 
 }

@@ -125,18 +125,18 @@ public abstract class Fighter {
 	
 	
 	public void giveBonusAttributes() {
-		this.attributes.setDexterity(getDexterity() + BONUS_ATTRIBUTES);
-		this.attributes.setFocus(getFocus() + BONUS_ATTRIBUTES);
-		this.attributes.setIntelligence(getIntelligence() + BONUS_ATTRIBUTES);
-		this.attributes.setStrenght(getStrenght() + BONUS_ATTRIBUTES);
+		this.setAttributes(getStrenght() + BONUS_ATTRIBUTES,
+				getDexterity() + BONUS_ATTRIBUTES, 
+				getIntelligence() + BONUS_ATTRIBUTES, 
+				getFocus() + BONUS_ATTRIBUTES);
 	}
 
 
 	public void givePenalityAttributes() {
-		this.attributes.setDexterity(getDexterity() - PENALITY_ATTRIBUTES);
-		this.attributes.setFocus(getFocus() - PENALITY_ATTRIBUTES);
-		this.attributes.setIntelligence(getIntelligence() - PENALITY_ATTRIBUTES);
-		this.attributes.setStrenght(getStrenght() - PENALITY_ATTRIBUTES);
+		this.setAttributes(getStrenght() - PENALITY_ATTRIBUTES,
+				getDexterity() - PENALITY_ATTRIBUTES, 
+				getIntelligence() - PENALITY_ATTRIBUTES, 
+				getFocus() - PENALITY_ATTRIBUTES);
 	}
 
 

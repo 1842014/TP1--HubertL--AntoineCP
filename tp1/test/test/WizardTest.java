@@ -11,6 +11,10 @@ import mock.SkillsMock;
 
 public class WizardTest {
 
+	private static final int ANY_STRENGHT = 10;
+	private static final int ANY_DEXTERITY = 10;
+	private static final int ANY_INTELLIGENCE = 30;
+	private static final int ANY_FOCUS = 30;
 	private static final String ANY_NAME = "Hubert";
 	private static final Skills ANY_SKILL = new SkillsMock();
 
@@ -18,10 +22,10 @@ public class WizardTest {
 	
 	@Test (expected = IllegalStrenghtAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_strenghtHigherThanIntelligence_ShouldThrowException() {
-		int strenght = 20;
-		int dexterity = 0;
-		int intelligence = 34;
-		int focus = 40;
+		int strenght = ANY_INTELLIGENCE - 14;
+		int dexterity = ANY_DEXTERITY;
+		int intelligence = ANY_INTELLIGENCE - 1;
+		int focus = ANY_FOCUS;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -30,10 +34,10 @@ public class WizardTest {
 	
 	@Test (expected = IllegalStrenghtAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_strenghtHigherThanFocus_ShouldThrowException() {
-		int strenght = 20;
-		int dexterity = 0;
-		int intelligence = 40;
-		int focus = 34;
+		int strenght = ANY_FOCUS - 14;
+		int dexterity = ANY_DEXTERITY;
+		int intelligence = ANY_INTELLIGENCE;
+		int focus = ANY_FOCUS - 1;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -42,10 +46,10 @@ public class WizardTest {
 	
 	@Test (expected = IllegalDexterityAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_dexterityHigherThanIntelligence_ShouldThrowException() {
-		int strenght = 0;
-		int dexterity = 20;
-		int intelligence = 34;
-		int focus = 40;
+		int strenght = ANY_STRENGHT;
+		int dexterity = ANY_INTELLIGENCE - 14;
+		int intelligence = ANY_INTELLIGENCE - 1;
+		int focus = ANY_FOCUS;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -54,10 +58,10 @@ public class WizardTest {
 	
 	@Test (expected = IllegalDexterityAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_dexterityHigherThanFocus_ShouldThrowException() {
-		int strenght = 0;
-		int dexterity = 20;
-		int intelligence = 40;
-		int focus = 34;
+		int strenght = ANY_STRENGHT;
+		int dexterity = ANY_FOCUS - 14;
+		int intelligence = ANY_INTELLIGENCE;
+		int focus = ANY_FOCUS - 1;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -66,10 +70,10 @@ public class WizardTest {
 	
 	@Test 
 	public void WHEN_fighterIsCreated_WITH_legalAttributes_ShouldCreateWizard() {
-		int strenght = 10;
-		int dexterity = 10;
-		int intelligence = 40;
-		int focus = 40;
+		int strenght = ANY_STRENGHT;
+		int dexterity = ANY_DEXTERITY;
+		int intelligence = ANY_INTELLIGENCE;
+		int focus = ANY_FOCUS;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		

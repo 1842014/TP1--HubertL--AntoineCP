@@ -10,7 +10,7 @@ import exception.NotImplementedTypeException;
 
 public class FighterFactory {
 	public enum FighterType{
-		ATHLETE,WARRIOR,WIZARD,UNKNOWN;
+		ATHLETE,WARRIOR,WIZARD;
 	}
 	public Fighter CreateFighter(FighterType type, String name, Attributes attributes,Skills firstSkill, Skills secondSkill) {
 		
