@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import abstraction.Attackable;
 import abstraction.Skills;
 import duel.Athlete;
 import duel.Attributes;
+import duel.Duel;
 import duel.Fighter;
 import duel.Warrior;
 import duel.Wizard;
@@ -38,6 +40,37 @@ public class Simulator {
 		this.printData("Voici les combatants");
 		this.decreaseHealth();
 		this.printData("Combatants àpres réducation de la vie");
+		this.printData("Combatants avant le combats");
+		this.fight(listOfFighter.get(0), listOfFighter.get(1));
+		this.printData("Combatants après le combats");
+		this.printData("Combatants avant le combats");
+		this.surrender(listOfFighter.get(2), listOfFighter.get(0));
+		this.printData("Combatants après le combats");
+
+	}
+
+	private void surrender(Fighter initiator, Fighter provoked) {
+		System.out.println();
+		System.out.println("Le combats commence!!!");
+		Duel duel = new Duel(initiator, (Attackable) initiator.getSkills().get(1), provoked);
+		
+		duel.surrender();
+		duel.giveWinnerBonus(healSpell);
+		
+		System.out.println();
+		System.out.println("Victoire pour " + duel.getWinner().getName() + "!!!");		
+	}
+
+	private void fight(Fighter initiator, Fighter provoked) {
+		System.out.println();
+		System.out.println("Le combats commence!!!");
+		Duel duel = new Duel(initiator, (Attackable) initiator.getSkills().get(0), provoked);
+		
+		duel.retaliate((Attackable) provoked.getSkills().get(0));
+		duel.giveWinnerBonus(healSpell);
+		
+		System.out.println();
+		System.out.println("Victoire pour " + duel.getWinner().getName() + "!!!");
 	}
 
 	private void decreaseHealth() {
@@ -56,8 +89,8 @@ public class Simulator {
 
 	private void seedData() {
 		this.listOfFighter.add(new Warrior("Bob", warriorAttributes, sword, shield));
-		this.listOfFighter.add(new Wizard("Merlon", wizardAttributes, offenseSpell, defenseSpell));
-		this.listOfFighter.add(new Athlete("Ryu", athleteAttributes, healSpell, remedy));
+		this.listOfFighter.add(new Wizard("Merlon", wizardAttributes, offenseSpell, healSpell));
+		this.listOfFighter.add(new Athlete("Ryu", athleteAttributes, defenseSpell, sword));
 	}
 
 }
