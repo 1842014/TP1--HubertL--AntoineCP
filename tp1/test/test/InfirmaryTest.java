@@ -10,14 +10,14 @@ import abstraction.Healable;
 import abstraction.Parryable;
 import duel.Attributes;
 import duel.Fighter;
-import duel.Infermery;
+import duel.Infirmary;
 import exception.NoHealableException;
 import mock.AttackSkillMock;
 import mock.FighterMock;
 import mock.HealSkillMock;
 import mock.ParrySkillMock;
 
-public class InfermeryTest {
+public class InfirmaryTest {
 
 	private static final String ANY_NAME = "Hubert";
 	private static final int ANY_STRENGHT = 20;
@@ -30,18 +30,18 @@ public class InfermeryTest {
 	private static final Parryable ANY_PARRY_SKILL = new ParrySkillMock(ANY_VALUE);
 	private static final Healable ANY_HEAL_SKILL = new HealSkillMock(ANY_VALUE);
 	private Fighter anyFighter;
-	private Infermery infermery;
+	private Infirmary infermery;
 	
 	@Before
 	public void setUpInfermery() {
 		this.anyFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_ATTACK_SKILL, ANY_HEAL_SKILL);
-		this.infermery = new Infermery(anyFighter, ANY_HEAL_SKILL);
+		this.infermery = new Infirmary(anyFighter, ANY_HEAL_SKILL);
 	}
 
 	@Test (expected = NoHealableException.class)
 	public void WHEN_HeallingSkillIsNotHere_THEN_ExceptionIsReturn() {
 		Fighter fighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_ATTACK_SKILL, ANY_PARRY_SKILL);
-		new Infermery(fighter, ANY_HEAL_SKILL);
+		new Infirmary(fighter, ANY_HEAL_SKILL);
 	}
 	@Test
 	public void WHEN_InfermeryIsUsed_THEN_HPIsHealed() {

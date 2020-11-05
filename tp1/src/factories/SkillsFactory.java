@@ -8,7 +8,7 @@ import skills.DefenseSpell;
 import skills.HealSpell;
 import skills.OffenseSpell;
 import skills.Remedy;
-import skills.Sheild;
+import skills.Shield;
 import skills.Sword;
 
 public class SkillsFactory {
@@ -39,7 +39,7 @@ public class SkillsFactory {
 	public Parryable createDefenseSkill(DefenseSkill skill, int value) {
 		
 		switch(skill) {
-		case SHEILD : return new Sheild(value);
+		case SHEILD : return new Shield(value);
 		
 		case DEFENSE_SPELL : return new DefenseSpell(value);
 		}

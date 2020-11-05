@@ -8,7 +8,7 @@ import duel.Athlete;
 import duel.Attributes;
 import duel.Duel;
 import duel.Fighter;
-import duel.Infermery;
+import duel.Infirmary;
 import duel.Warrior;
 import duel.Wizard;
 import exception.NoHealableException;
@@ -16,7 +16,7 @@ import skills.DefenseSpell;
 import skills.HealSpell;
 import skills.OffenseSpell;
 import skills.Remedy;
-import skills.Sheild;
+import skills.Shield;
 import skills.Sword;
 
 public class Simulator {
@@ -28,7 +28,7 @@ public class Simulator {
 	}
 	Attributes warriorAttributes = new Attributes(40, 25,20, 15);
 	Skills sword = new Sword(ANY_VALUE);
-	Skills shield = new Sheild(ANY_VALUE);
+	Skills shield = new Shield(ANY_VALUE);
 	Attributes athleteAttributes = new Attributes(20, 20, 20, 20);
 	Skills offenseSpell = new OffenseSpell(ANY_VALUE);
 	Skills defenseSpell = new DefenseSpell(ANY_VALUE);
@@ -58,7 +58,7 @@ public class Simulator {
 		System.out.println();
 		System.out.println("Le Combatant " + fighterToHeal.getName() + " va à l'infirmerie.");
 		try {
-			Infermery infermery = new Infermery(fighterToHeal, healSkill);
+			Infirmary infermery = new Infirmary(fighterToHeal, healSkill);
 			
 			infermery.healing();
 		}

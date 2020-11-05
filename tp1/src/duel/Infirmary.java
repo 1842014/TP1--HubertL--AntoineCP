@@ -3,11 +3,11 @@ package duel;
 import abstraction.Healable;
 import exception.NoHealableException;
 
-public class Infermery {
+public class Infirmary {
 	private Fighter fighter;
 	private Healable healSpell;
 	
-	public Infermery(Fighter fighter, Healable healSpell) {
+	public Infirmary(Fighter fighter, Healable healSpell) {
 		this.fighter = fighter;
 		validateHealSkill(healSpell);
 		this.healSpell = healSpell;

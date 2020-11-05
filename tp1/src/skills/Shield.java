@@ -4,13 +4,13 @@ import abstraction.Parryable;
 import duel.Fighter;
 import exception.IllegalValueException;
 
-public class Sheild implements Parryable{
+public class Shield implements Parryable{
 
 public static final int MINIMUM_VALUE = 20;
 public static final int MAXIMUM_VALUE = 100;
 private int protection;
 	
-	public Sheild(int protection) {
+	public Shield(int protection) {
 		this.validateValue(protection);
 		this.protection = protection;
 	}

@@ -11,12 +11,12 @@ import duel.Fighter;
 import exception.IllegalValueException;
 import mock.FighterMock;
 import mock.SkillsMock;
-import skills.Sheild;
+import skills.Shield;
 
 public class SheildTest {
 
-	private static final int LOWER_PROTECTION = Sheild.MINIMUM_VALUE - 1;
-	private static final int HIGHER_PROTECTION = Sheild.MAXIMUM_VALUE + 1;
+	private static final int LOWER_PROTECTION = Shield.MINIMUM_VALUE - 1;
+	private static final int HIGHER_PROTECTION = Shield.MAXIMUM_VALUE + 1;
 	private static final int ANY_VALUE = 50;
 	private static final String ANY_NAME = "Hubert";
 	private static final int ANY_STRENGHT = 20;
@@ -29,12 +29,12 @@ public class SheildTest {
 	
 	
 	private Fighter aFighter;
-	private Sheild sheild;
+	private Shield sheild;
 	
 	@Before
 	public void setUpAFighter() {
 		this.aFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES, ANY_SKILL, ANY_SKILL);
-		sheild = new Sheild(ANY_VALUE);
+		sheild = new Shield(ANY_VALUE);
 	}
 	
 	@Test
@@ -44,11 +44,11 @@ public class SheildTest {
 	
 	@Test (expected = IllegalValueException.class)
 	public void WHEN_sheildIsCreated_WITH_ProtectionLowerThanMinimum_ShouldThrowException() {
-		new Sheild(LOWER_PROTECTION);
+		new Shield(LOWER_PROTECTION);
 	}
 	@Test (expected = IllegalValueException.class)
 	public void WHEN_sheildIsCreated_WITH_ProtectionHigherThanMaximum_ShouldThrowException() {
-		new Sheild(HIGHER_PROTECTION);
+		new Shield(HIGHER_PROTECTION);
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ public class SheildTest {
 		
 		int value = sheild.getValue(aFighter);
 		
-		final int EXPECTED_VALUE = aFighter.getStrenght() * sheild.getProtection() / Sheild.MAXIMUM_VALUE;
+		final int EXPECTED_VALUE = aFighter.getStrenght() * sheild.getProtection() / Shield.MAXIMUM_VALUE;
 		assertEquals(EXPECTED_VALUE, value);
 	}
 
