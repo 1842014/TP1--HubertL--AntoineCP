@@ -13,6 +13,10 @@ import mock.SkillsMock;
 
 public class AthleteTest {
 
+	private static final int ANY_STRENGHT = 20;
+	private static final int ANY_DEXTERITY = 20;
+	private static final int ANY_INTELLIGENCE = 20;
+	private static final int ANY_FOCUS = 20;
 	private static final String ANY_NAME = "Hubert";
 	private static final Skills ANY_SKILL = new SkillsMock();
 
@@ -20,10 +24,10 @@ public class AthleteTest {
 	
 	@Test (expected = IllegalDexterityAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_illegalDexterity_ShouldThrowException() {
-		int strenght = 20;
-		int dexterity = 19;
-		int intelligence = 20;
-		int focus = 20;
+		int strenght = ANY_STRENGHT;
+		int dexterity = ANY_DEXTERITY -1;
+		int intelligence = ANY_INTELLIGENCE;
+		int focus = ANY_FOCUS;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -32,10 +36,10 @@ public class AthleteTest {
 	
 	@Test (expected = IllegalIntelligenceAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_illegalIntelligence_ShouldThrowException() {
-		int strenght = 20;
-		int dexterity = 20;
-		int intelligence = 19;
-		int focus = 20;
+		int strenght = ANY_STRENGHT;
+		int dexterity = ANY_DEXTERITY;
+		int intelligence = ANY_INTELLIGENCE - 1;
+		int focus = ANY_FOCUS;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -44,10 +48,10 @@ public class AthleteTest {
 	
 	@Test (expected = IllegalFocusAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_illegalFocus_ShouldThrowException() {
-		int strenght = 20;
-		int dexterity = 20;
-		int intelligence = 20;
-		int focus = 19;
+		int strenght = ANY_STRENGHT;
+		int dexterity = ANY_DEXTERITY;
+		int intelligence = ANY_INTELLIGENCE;
+		int focus = ANY_FOCUS - 1;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -56,10 +60,10 @@ public class AthleteTest {
 	
 	@Test (expected = IllegalStrenghtAttributes.class)
 	public void WHEN_fighterIsCreated_WITH_illegalStrenght_ShouldThrowException() {
-		int strenght = 19;
-		int dexterity = 20;
-		int intelligence = 20;
-		int focus = 20;
+		int strenght = ANY_STRENGHT - 1;
+		int dexterity = ANY_DEXTERITY;
+		int intelligence = ANY_INTELLIGENCE;
+		int focus = ANY_FOCUS;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		
@@ -68,10 +72,10 @@ public class AthleteTest {
 	
 	@Test 
 	public void WHEN_fighterIsCreated_WITH_legalAttributes_ShouldCreateAthlete() {
-		int strenght = 20;
-		int dexterity = 20;
-		int intelligence = 20;
-		int focus = 20;
+		int strenght = ANY_STRENGHT;
+		int dexterity = ANY_DEXTERITY;
+		int intelligence = ANY_INTELLIGENCE;
+		int focus = ANY_FOCUS;
 		Attributes attributes = new Attributes(strenght, dexterity, intelligence, focus);
 		
 		

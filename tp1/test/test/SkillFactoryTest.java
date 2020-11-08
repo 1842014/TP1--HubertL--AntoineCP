@@ -17,7 +17,7 @@ import skills.DefenseSpell;
 import skills.HealSpell;
 import skills.OffenseSpell;
 import skills.Remedy;
-import skills.Sheild;
+import skills.Shield;
 import skills.Sword;
 
 public class SkillFactoryTest {
@@ -51,7 +51,7 @@ public class SkillFactoryTest {
 		Skills sheild = factory.createDefenseSkill(DefenseSkill.SHEILD, ANY_VALUE);
 		
 		assertTrue(sheild instanceof Parryable);
-		assertTrue(sheild instanceof Sheild);
+		assertTrue(sheild instanceof Shield);
 	}
 	
 	@Test
