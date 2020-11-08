@@ -44,8 +44,14 @@ public class DuelTest {
 		this.initFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES_FIGHTER_INIT, ANY_ATTACK_SKILL, ANY_HEAL_SKILL);
 		this.provokedFighter = new FighterMock(ANY_NAME, ANY_ATTRIBUTES_FIGHTER_PROVOKED, ANY_ATTACK_SKILL, ANY_PARRY_SKILL);
 		this.duel = new Duel(initFighter, ANY_ATTACK_SKILL, provokedFighter);
+		
+		//Création de la méthode setAttributes, car à chaque test les attributs change.
+		//Alors on remet les valeurs initiales.
 		this.initFighter.setAttributes(ANY_STRENGHT, ANY_DEXTERITY, ANY_INTELLIGENCE, ANY_FOCUS);
 		this.provokedFighter.setAttributes(ANY_STRENGHT, ANY_DEXTERITY, ANY_INTELLIGENCE, ANY_FOCUS);
+		
+		//Création de la méthode SetHealthPoints, car on change souvent la vie du combatant.
+		//Alors on remet la valeur initiale.
 		this.initFighter.setHealthPoints();
 		this.provokedFighter.setHealthPoints();
 	}
@@ -80,6 +86,9 @@ public class DuelTest {
 	
 	@Test
 	public void WHEN_duelIsCreated_WITH_provokedFighterRetaliatingWithLowerAttackSkill_THEN_initFighterIsWinner() {		
+		//La capacité d'attaque doit être supérieur à 5 de la valeur initial, car le calcul est en int et pas en float.
+		//Si il avait été en float on aurait été capable d'ajouter que 1 à la valeur initial
+		
 		Attackable attackSkill = new AttackSkillMock(ANY_VALUE - 5);
 		
 		this.duel.retaliate(attackSkill);
@@ -90,8 +99,6 @@ public class DuelTest {
 	
 	@Test
 	public void WHEN_duelIsCreated_WITH_provokedFighterRetaliatingWithHigherAttackSkill_THEN_ProvokedFighterIsWinner() {
-		//La capacité d'attaque doit être supérieur à 5 de la valeur initial, car le calcul est en int et pas en float.
-		//Si il avait été en float on aurait été capable d'ajouter que 1 à la valeur initial
 		Attackable attackSkill = new AttackSkillMock(ANY_VALUE + 5);
 		
 		this.duel.retaliate(attackSkill);
@@ -151,7 +158,9 @@ public class DuelTest {
 	
 	@Test
 	public void WHEN_duelIsCreated_WITH_provokedFighterRetaliatingWithLowerValue_THEN_LoserHealthIsDecreased() {
-		Parryable parrySkill = new ParrySkillMock(20);
+		final int ANY_LOWER_VALUE = 20;
+		
+		Parryable parrySkill = new ParrySkillMock(ANY_LOWER_VALUE);
 		final int EXPECTED_HEALTH_TO_REMOVE = ANY_ATTACK_SKILL.getValue(null) - parrySkill.getValue(null);
 		final int EXPECTED_LOSER_HEALTH = this.provokedFighter.getHealthPoints() - EXPECTED_HEALTH_TO_REMOVE;
 		
@@ -164,7 +173,9 @@ public class DuelTest {
 	
 	@Test
 	public void WHEN_duelIsCreated_WITH_provokedFighterRetaliatingWithStrongerValue_THEN_loserHealthIsDecreased() {
-		Parryable parrySkill = new ParrySkillMock(100);
+		final int ANY_STRONGER_VALUE = 100;
+		
+		Parryable parrySkill = new ParrySkillMock(ANY_STRONGER_VALUE);
 		final int EXPECTED_HEALTH_TO_REMOVE = parrySkill.getValue(null) - ANY_ATTACK_SKILL.getValue(null);
 		final int EXPECTED_LOSER_HEALTH = this.initFighter.getHealthPoints() - EXPECTED_HEALTH_TO_REMOVE;
 		

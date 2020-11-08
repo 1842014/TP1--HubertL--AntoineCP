@@ -3,21 +3,18 @@ import java.util.List;
 
 import abstraction.Attackable;
 import abstraction.Healable;
-import abstraction.Skills;
-import duel.Athlete;
+import abstraction.Parryable;
 import duel.Attributes;
 import duel.Duel;
 import duel.Fighter;
 import duel.Infirmary;
-import duel.Warrior;
-import duel.Wizard;
 import exception.NoHealableException;
-import skills.DefenseSpell;
-import skills.HealSpell;
-import skills.OffenseSpell;
-import skills.Remedy;
-import skills.Shield;
-import skills.Sword;
+import factories.FighterFactory;
+import factories.FighterFactory.FighterType;
+import factories.SkillsFactory;
+import factories.SkillsFactory.AttackSkill;
+import factories.SkillsFactory.DefenseSkill;
+import factories.SkillsFactory.HealSkill;
 
 public class Simulator {
 
@@ -26,17 +23,11 @@ public class Simulator {
 	public static void main(String[] args) {
 		new Simulator();
 	}
-	Attributes warriorAttributes = new Attributes(40, 25,20, 15);
-	Skills sword = new Sword(ANY_VALUE);
-	Skills shield = new Shield(ANY_VALUE);
-	Attributes athleteAttributes = new Attributes(20, 20, 20, 20);
-	Skills offenseSpell = new OffenseSpell(ANY_VALUE);
-	Skills defenseSpell = new DefenseSpell(ANY_VALUE);
-	Attributes wizardAttributes = new Attributes(10, 10, 40, 40);
-	Skills healSpell = new HealSpell(ANY_VALUE);
-	Skills remedy = new Remedy(ANY_VALUE);
 	
 	private List<Fighter> listOfFighter = new ArrayList<Fighter>();
+	private FighterFactory fighterFactory = new FighterFactory();
+	private SkillsFactory skillsFactory = new SkillsFactory();
+	private Healable remedy =  skillsFactory.createHealsSkill(HealSkill.REMEDY, ANY_VALUE);
 	
 	public Simulator() {
 		this.seedData();
@@ -79,7 +70,7 @@ public class Simulator {
 		duel.surrender();
 		System.out.println();
 		System.out.println(provoked.getName() + " capitule!");
-		duel.giveWinnerBonus(healSpell);
+		duel.giveWinnerBonus(skillsFactory.createHealsSkill(HealSkill.REMEDY, ANY_VALUE));
 		
 		System.out.println();
 		System.out.println("Victoire pour " + duel.getWinner().getName() + "!!!");		
@@ -93,7 +84,7 @@ public class Simulator {
 		duel.retaliate((Attackable) provoked.getSkills().get(0));
 		System.out.println();
 		System.out.println(provoked.getName() + " riposte!");
-		duel.giveWinnerBonus(healSpell);
+		duel.giveWinnerBonus(skillsFactory.createHealsSkill(HealSkill.REMEDY, ANY_VALUE));
 		
 		System.out.println();
 		System.out.println("Victoire pour " + duel.getWinner().getName() + "!!!");
@@ -114,9 +105,18 @@ public class Simulator {
 	}
 
 	private void seedData() {
-		this.listOfFighter.add(new Warrior("Bob", warriorAttributes, sword, shield));
-		this.listOfFighter.add(new Wizard("Merlon", wizardAttributes, offenseSpell, healSpell));
-		this.listOfFighter.add(new Athlete("Ryu", athleteAttributes, defenseSpell, sword));
+		Attributes warriorAttributes = new Attributes(40, 25,20, 15);
+		Attackable sword = skillsFactory.createAttackSkill(AttackSkill.SWORD, ANY_VALUE);
+		Parryable shield = skillsFactory.createDefenseSkill(DefenseSkill.SHEILD, ANY_VALUE);
+		Attributes athleteAttributes = new Attributes(20, 20, 20, 20);
+		Attackable offenseSpell = skillsFactory.createAttackSkill(AttackSkill.OFFENSE_SPELL, ANY_VALUE);
+		Parryable defenseSpell = skillsFactory.createDefenseSkill(DefenseSkill.DEFENSE_SPELL, ANY_VALUE);
+		Attributes wizardAttributes = new Attributes(10, 10, 40, 40);
+		Healable healSpell = skillsFactory.createHealsSkill(HealSkill.HEAL_SPELL, ANY_VALUE);
+		
+		this.listOfFighter.add(fighterFactory.CreateFighter(FighterType.WARRIOR, "Bob", warriorAttributes, sword, shield));
+		this.listOfFighter.add(fighterFactory.CreateFighter(FighterType.WIZARD, "Merlon", wizardAttributes, offenseSpell, healSpell));
+		this.listOfFighter.add(fighterFactory.CreateFighter(FighterType.ATHLETE, "Ryu", athleteAttributes, defenseSpell, sword));
 	}
 
 }

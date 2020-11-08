@@ -240,5 +240,16 @@ public class FighterTest {
 		assertEquals(intelligenceAfterPenality, aFighter.getIntelligence());
 		assertEquals(focusAfterPenality, aFighter.getFocus());
 	}
+	
+	@Test
+	public void WHEN_aFighterIsCreated_WHTH_HealCalled_ShouldHealFighter() {
+		final int HP_TO_ADD = 20;
+		final int EXPECTED_FIHTER_HEALTH = aFighter.getHealthPoints() + HP_TO_ADD;
+		
+		aFighter.heal(HP_TO_ADD);
+		
+		
+		assertEquals(EXPECTED_FIHTER_HEALTH, aFighter.getHealthPoints());
+	}
 
 }

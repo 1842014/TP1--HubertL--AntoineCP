@@ -16,11 +16,11 @@ public class FighterFactory {
 		
 		switch(type){
 		case ATHLETE:
-			return new Athlete(name, attributes, secondSkill, secondSkill);
+			return new Athlete(name, attributes, firstSkill, secondSkill);
 		case WARRIOR:
-			return new Warrior(name, attributes, secondSkill, secondSkill);
+			return new Warrior(name, attributes, firstSkill, secondSkill);
 		case WIZARD:
-			return new Wizard(name, attributes, secondSkill, secondSkill);
+			return new Wizard(name, attributes, firstSkill, secondSkill);
 	
 			
 		}
