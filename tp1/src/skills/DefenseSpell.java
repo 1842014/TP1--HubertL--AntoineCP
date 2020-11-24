@@ -4,7 +4,7 @@ import abstraction.Parryable;
 import duel.Fighter;
 import exception.IllegalValueException;
 
-public class DefenseSpell implements Parryable {
+public class DefenseSpell implements Parryable {//MS : Doit implémenter Skills aussi.
 
 	public static final int MULTIPLIER = 3;
 	public static final int MINIMUM_VALUE = 20;

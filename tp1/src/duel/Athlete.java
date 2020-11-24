@@ -8,7 +8,7 @@ import exception.IllegalStrenghtAttributes;
 
 public class Athlete extends Fighter{
 
-	private static final int MINIMUM_VALUE_ATTRIBUTE = 20;
+	private static final int MINIMUM_VALUE_ATTRIBUTE = 20;//MS: Il faudrait avoir une constante pour chaque élément.
 
 	public Athlete(String name, Attributes attributes, Skills firstSkill, Skills secondSkill) {
 		super(name, attributes, firstSkill, secondSkill);
@@ -16,7 +16,7 @@ public class Athlete extends Fighter{
 	}
 
 	private void validateAttributes() {
-		if(super.getStrenght() < MINIMUM_VALUE_ATTRIBUTE) {
+		if(super.getStrenght() < MINIMUM_VALUE_ATTRIBUTE) {//MS : Else/if pas nécessaire ici, les throws vont arrêter l'exécution.
 			throw new IllegalStrenghtAttributes();
 		}
 		else if (super.getDexterity() < MINIMUM_VALUE_ATTRIBUTE) {

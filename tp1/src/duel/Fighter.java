@@ -27,7 +27,7 @@ public abstract class Fighter {
 	public Fighter(String name, Attributes attributes, Skills firstSkill, Skills secondSkill) {
 		this.name = name;
 		this.validateAttributes(attributes);
-		this.attributes = attributes;
+		this.attributes = attributes;//MS: Prendre une copie de l'instance d'objet Abilities (encapsulation)
 		this.healthPoints = this.setHealthPoints();
 		this.addSkill(firstSkill);
 		this.addSkill(secondSkill);
@@ -43,7 +43,7 @@ public abstract class Fighter {
 		}
 	}
 	
-	private int getTotalAttributes() {
+	private int getTotalAttributes() {//MS: supprimer le code mort
 		return attributes.getStrenght() + attributes.getDexterity() + attributes.getIntelligence() + attributes.getFocus();
 	}
 	private int getTotalAttributes(Attributes attributes) {
@@ -76,7 +76,7 @@ public abstract class Fighter {
 		return this.healthPoints;
 	}
 	
-	public int setHealthPoints() {
+	public int setHealthPoints() {//MS: méthode devrait être privée
 		return BASE_HEALTH_POINTS - this.getTotalAttributes();
 	}
 	public void heal(int hpToAdd) {
@@ -127,7 +127,7 @@ public abstract class Fighter {
 	}
 	
 	
-	public void giveBonusAttributes() {
+	public void giveBonusAttributes() {//MS: SRP->Single Responsability Ce n'est pas la responsabilité du fighter de donner le bonus. Doit seulement offrir des get/set.
 		this.setAttributes(getStrenght() + BONUS_ATTRIBUTES,
 				getDexterity() + BONUS_ATTRIBUTES, 
 				getIntelligence() + BONUS_ATTRIBUTES, 
@@ -135,7 +135,7 @@ public abstract class Fighter {
 	}
 
 
-	public void givePenalityAttributes() {
+	public void givePenalityAttributes() {//MS: SRP->Single Responsability Ce n'est pas la responsabilité du fighter de donner les pénalités. Doit seulement offrir des get/set.
 		this.setAttributes(getStrenght() - PENALITY_ATTRIBUTES,
 				getDexterity() - PENALITY_ATTRIBUTES, 
 				getIntelligence() - PENALITY_ATTRIBUTES, 
@@ -143,7 +143,7 @@ public abstract class Fighter {
 	}
 
 
-	public void setAttributes(int newStrenght, int newDexterity, int newIntelligence, int newFocus) {
+	public void setAttributes(int newStrenght, int newDexterity, int newIntelligence, int newFocus) {//MS: méthode devrait être privée
 		this.attributes.setStrenght(newStrenght);
 		this.attributes.setDexterity(newDexterity);
 		this.attributes.setIntelligence(newIntelligence);

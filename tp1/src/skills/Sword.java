@@ -4,7 +4,7 @@ import abstraction.Attackable;
 import duel.Fighter;
 import exception.IllegalValueException;
 
-public class Sword implements Attackable{
+public class Sword implements Attackable{//MS : Doit implémenter Skills aussi.
 
 	public static final int MINIMUM_VALUE = 20;
 	public static final int MAXIMUM_VALUE = 100;
@@ -27,7 +27,7 @@ public class Sword implements Attackable{
 	
 	@Override
 	public int getValue(Fighter fighter) {
-		return fighter.getStrenght() * this.impact / MAXIMUM_VALUE;
+		return fighter.getStrenght() * this.impact / MAXIMUM_VALUE;//MS : Attention ici, le 100 dans le calcul ne correspond pas à la valeur Max... Si la valeur Max change, on aura un problème.
 	}
 	@Override
 	public String toString() {

@@ -22,9 +22,9 @@ public class Duel {
 	
 	//Constructeur
 	public Duel(Fighter fighterInitiator, Attackable skill, Fighter provokedFighter) {
-		this.fighterInitiator = fighterInitiator;
+		this.fighterInitiator = fighterInitiator;//MS: un combattant doit être en vie pour se battre
 		this.initiatorSkill = skill;
-		this.provokedFighter = provokedFighter;
+		this.provokedFighter = provokedFighter;//MS: un combattant doit être en vie pour se battre
 	}
 	
 	
@@ -98,7 +98,7 @@ public class Duel {
 		return this.loser;
 	}
 	
-	public void giveWinnerBonus(Skills chosenSkill) {
+	public void giveWinnerBonus(Skills chosenSkill) {//MS: nommage méthode - Le nom de la méthode ne représente pas ce qu'elle fait.
 		this.winner.addSkill(chosenSkill);
 		this.winner.giveBonusAttributes();
 		

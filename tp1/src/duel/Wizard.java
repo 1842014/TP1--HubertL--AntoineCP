@@ -31,7 +31,7 @@ public class Wizard extends Fighter{
 		}
 	}
 
-	private int max(int firstAttribute, int secondAttribute) {
+	private int max(int firstAttribute, int secondAttribute) {//MS : DRY : Utiliser Math.max
 		if(firstAttribute >= secondAttribute) {
 			return firstAttribute;
 		}

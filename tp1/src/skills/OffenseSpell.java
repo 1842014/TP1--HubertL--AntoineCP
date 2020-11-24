@@ -4,7 +4,7 @@ import abstraction.Attackable;
 import duel.Fighter;
 import exception.IllegalValueException;
 
-public class OffenseSpell implements Attackable{
+public class OffenseSpell implements Attackable{//MS : Doit implémenter Skills aussi.
 
 	public static final int MULTIPLIER = 3;
 	public static final int MINIMUM_VALUE = 20;

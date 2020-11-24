@@ -4,7 +4,7 @@ import abstraction.Parryable;
 import duel.Fighter;
 import exception.IllegalValueException;
 
-public class Shield implements Parryable{
+public class Shield implements Parryable{//MS : Doit implémenter Skills aussi.
 
 public static final int MINIMUM_VALUE = 20;
 public static final int MAXIMUM_VALUE = 100;

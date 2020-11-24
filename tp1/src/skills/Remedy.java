@@ -4,7 +4,7 @@ import abstraction.Healable;
 import duel.Fighter;
 import exception.IllegalValueException;
 
-public class Remedy implements Healable {
+public class Remedy implements Healable {//MS : Doit implémenter Skills aussi.
 
 	public static final int MAXIMUM_VALUE = 100;
 	public static final int MINIMUM_VALUE = 20;
