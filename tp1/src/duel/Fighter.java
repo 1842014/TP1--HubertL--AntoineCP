@@ -130,7 +130,7 @@ public abstract class Fighter {
 	public void giveBonusAttributes() {//MS: SRP->Single Responsability Ce n'est pas la responsabilité du fighter de donner le bonus. Doit seulement offrir des get/set.
 		this.setAttributes(getStrenght() + BONUS_ATTRIBUTES,
 				getDexterity() + BONUS_ATTRIBUTES, 
-				getIntelligence() + BONUS_ATTRIBUTES, 
+				getIntelligence() + BONUS_ATTRIBUTES, //MS: Tell, don't ask
 				getFocus() + BONUS_ATTRIBUTES);
 	}
 
@@ -138,7 +138,7 @@ public abstract class Fighter {
 	public void givePenalityAttributes() {//MS: SRP->Single Responsability Ce n'est pas la responsabilité du fighter de donner les pénalités. Doit seulement offrir des get/set.
 		this.setAttributes(getStrenght() - PENALITY_ATTRIBUTES,
 				getDexterity() - PENALITY_ATTRIBUTES, 
-				getIntelligence() - PENALITY_ATTRIBUTES, 
+				getIntelligence() - PENALITY_ATTRIBUTES, //MS: Tell, don't ask
 				getFocus() - PENALITY_ATTRIBUTES);
 	}
 
